@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-menu-toggle>
+      <ion-button><ion-icon name="menu-outline"></ion-icon></ion-button>
+     </ion-menu-toggle>
     <ion-title>
       Control IOT
     </ion-title>
@@ -7,15 +10,15 @@
 </ion-header>
 
 <ion-content>
-
-  <ion-grid>
+  
+   <ion-grid>
     <ion-row class="ion-justify-content-center">
       <ion-col sizeXs="12" sizeSm="11" sizeMd="10" sizeLg="8" sizeXl="6" >
             <div style="margin: 10px;"></div>
           
             <ion-segment (ionChange)="segmentChanged($event)" value="temp">
               <ion-segment-button value="temp">
-                <ion-label>Temperatura</ion-label>
+                <ion-label>Medicion</ion-label>
               </ion-segment-button>
               <ion-segment-button value="contr">
                 <ion-label>Controles</ion-label>
@@ -30,7 +33,7 @@
               <ion-item>
                 <ion-icon slot="start" name="thermometer-outline" color="primary"></ion-icon>
                 <ion-label>
-                  <strong>Temp: </strong> {{lastMedicion.sensor}} ºC
+                  <strong>Calidad de aire: </strong> {{lastMedicion.sensor}}
                 </ion-label>
               </ion-item>
               <ion-item lines="none">
@@ -39,12 +42,9 @@
                   {{lastMedicion.time | date:'medium'}}
                 </ion-label>
               </ion-item>
-          
-          
             </ion-card>
           
             <ion-card *ngIf="seccion == 'contr'">
-          
               <ion-list>
                 <ion-list-header>
                   Control ventilador
@@ -71,14 +71,10 @@
                 </ion-item>
           
               </ion-list>
-          
-          
             </ion-card>
           
             <ion-card *ngIf="seccion == 'contr'">
-          
               <ion-list>
-          
                 <ion-list-header>
                   Control Umbral
                 </ion-list-header>
@@ -95,16 +91,14 @@
                     <ion-icon slot="end" name="thermometer-outline" color="primary"></ion-icon>
                   </ion-range>
                 </ion-item>
-          
-          
               </ion-list>
-          
-          
-          
-          
-          
-          
             </ion-card>
+          
+          
+          
+          
+          
+          
           
             <ion-card *ngIf="seccion == 'hist'">
               <ion-list>
@@ -123,7 +117,4 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
-
-
 </ion-content>

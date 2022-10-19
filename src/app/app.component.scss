@@ -117,3 +117,21 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+
+
+//Estilos para el menu
+ion-menu::part(backdrop) {
+  background-color: rgb(58, 58, 58);
+}
+
+ion-menu::part(container) {
+  border-radius: 0 20px 20px 0;
+  box-shadow: 4px 0px 16px rgb(58, 58, 58);
+}
+
+ion-title{
+  text-align: center;
+  font-size: 35px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
