@@ -105,16 +105,7 @@ export class ControlIotComponent implements OnInit {
           }
     });
   }
-
-
-
-
-
-
-
 }
-
-
 
 interface Mediciones {
   sensor: number;

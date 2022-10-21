@@ -1,5 +1,7 @@
 {
   "name": "iotionic",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

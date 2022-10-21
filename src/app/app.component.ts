@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -16,5 +17,5 @@ export class AppComponent {
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor() {}
 
-  imgLogo= "https://www.acuitybrands.com/-/media/abl/acuitybrands/images/resources/retrofit-and-renovation/controls.png?h=200&w=300&la=en&hash=74F41A478F087773778CED4444E81107";
+  
 }

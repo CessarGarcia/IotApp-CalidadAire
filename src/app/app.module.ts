@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +14,8 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { FormsModule } from '@angular/forms';
+
+
 
 @NgModule({
     declarations: [
@@ -25,9 +28,10 @@ import { FormsModule } from '@angular/forms';
         AppRoutingModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireDatabaseModule,
-        FormsModule
+        FormsModule,
+        
     ],
-    providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+    providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, CallNumber],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

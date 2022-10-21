@@ -10,7 +10,53 @@
 </ion-header>
 
 <ion-content>
-  
+  <ion-grid>
+      <!--Hey! This is the original version of Simple CSS Waves-->
+
+    <div class="header">
+      <!--Content before waves-->
+      <div class="inner-header flex">
+        <!--Just the logo.. Don't mind this-->
+        
+          <div class="waviy">
+            <span style="--i:1"><ion-icon name="earth-outline"></ion-icon></span>
+            <span style="--i:2">G</span>
+            <span style="--i:3">r</span>
+            <span style="--i:4">e</span>
+            <span style="--i:5">e</span>
+            <span style="--i:6">n</span>
+            <span style="--i:7">P</span>
+            <span style="--i:8">o</span>
+            <span style="--i:9">i</span>
+            <span style="--i:10">n</span>
+            <span style="--i:11">t</span>
+            <span style="--i:12">.</span>
+          </div>
+       </div>
+
+      
+      <!--Waves Container-->
+      <div>
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+      viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+      <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+      </defs>
+      <g class="parallax">
+      <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.6)" />
+      <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(185, 177, 177, 0.5)" />
+      <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(185, 177, 177, 0.3)"/>
+      <use xlink:href="#gentle-wave" x="48" y="7" fill="#dcdcdc" />
+      </g>
+      </svg>
+      </div>
+      <!--Waves end-->
+      
+      </div>
+      <!--Header ends-->
+      <!--Content ends-->
+  </ion-grid>
+
    <ion-grid>
     <ion-row class="ion-justify-content-center">
       <ion-col sizeXs="12" sizeSm="11" sizeMd="10" sizeLg="8" sizeXl="6" >
@@ -31,13 +77,13 @@
           
             <ion-card *ngIf="seccion == 'temp'">
               <ion-item>
-                <ion-icon slot="start" name="thermometer-outline" color="primary"></ion-icon>
+                <ion-icon name="partly-sunny-outline" color="primary"></ion-icon>
                 <ion-label>
                   <strong>Calidad de aire: </strong> {{lastMedicion.sensor}}
                 </ion-label>
               </ion-item>
               <ion-item lines="none">
-                <ion-icon slot="start" name="timer-outline" color="primary"></ion-icon>
+                <ion-icon slot="start" name="timer" color="primary"></ion-icon>
                 <ion-label>
                   {{lastMedicion.time | date:'medium'}}
                 </ion-label>
@@ -103,6 +149,7 @@
             <ion-card *ngIf="seccion == 'hist'">
               <ion-list>
                 <ion-list-header>
+                  <ion-icon name="sync-circle" color="primary"></ion-icon>
                   Historial:
                 </ion-list-header>
                 <ion-item *ngFor="let medicion of mediciones">
