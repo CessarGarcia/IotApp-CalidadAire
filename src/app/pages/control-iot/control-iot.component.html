@@ -77,9 +77,9 @@
           
             <ion-card *ngIf="seccion == 'temp'">
               <ion-item>
-                <ion-icon name="partly-sunny-outline" color="primary"></ion-icon>
+                <ion-icon name="leaf-outline" color="primary"></ion-icon>
                 <ion-label>
-                  <strong>Calidad de aire: </strong> {{lastMedicion.sensor}}
+                  <strong>Lectura: </strong> {{lastMedicion.sensor}}
                 </ion-label>
               </ion-item>
               <ion-item lines="none">
@@ -92,9 +92,11 @@
           
             <ion-card *ngIf="seccion == 'contr'">
               <ion-list>
-                <ion-list-header>
-                  Control ventilador
-                </ion-list-header>
+                <div class="ion-text-center">
+                  <h1>
+                    Control ventilador
+                  </h1>
+                </div>
           
                 <ion-item>
                   <ion-label>Manual</ion-label>
@@ -121,9 +123,9 @@
           
             <ion-card *ngIf="seccion == 'contr'">
               <ion-list>
-                <ion-list-header>
-                  Control Umbral
-                </ion-list-header>
+                <div class="ion-text-center">
+                  <h1> Control Umbral </h1>
+                </div>
           
                 <ion-item>
                   <ion-label>
@@ -150,11 +152,13 @@
               <ion-list>
                 <ion-list-header>
                   <ion-icon name="sync-circle" color="primary"></ion-icon>
-                  Historial:
+                  <div class="ion-text-center">
+                    <h1> Historial: </h1>
+                  </div>
                 </ion-list-header>
                 <ion-item *ngFor="let medicion of mediciones">
                   <ion-label>
-                    <strong>Temp: </strong> {{medicion.sensor}} ºC
+                    <strong>Particulas por millon: </strong> {{medicion.sensor}} PPM
                     <p>{{medicion.time | date:'medium'}} </p>
                   </ion-label>
                 </ion-item>

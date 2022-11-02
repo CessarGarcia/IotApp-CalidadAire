@@ -33,7 +33,6 @@ export class ControlIotComponent implements OnInit {
   ngOnInit() {}
 
   leerMediciones() {
-      
       const path = 'mediciones/';
       this.database.list<Mediciones>(path, ref => ref.orderByChild('time').limitToLast(20)).valueChanges().subscribe( res => {
           console.log('mediciones -> ', res);
@@ -99,9 +98,9 @@ export class ControlIotComponent implements OnInit {
     this.database.object<number>(path).valueChanges().subscribe( res => {
           console.log('setManual() -> ', res);
           if (res > 0) {
-             this.manual = true;
+            this.manual = true;
           } else {
-             this.manual = false;
+            this.manual = false;
           }
     });
   }

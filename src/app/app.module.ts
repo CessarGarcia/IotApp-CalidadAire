@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { CallNumber } from '@ionic-native/call-number/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -31,7 +30,7 @@ import { FormsModule } from '@angular/forms';
         FormsModule,
         
     ],
-    providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, CallNumber],
+    providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

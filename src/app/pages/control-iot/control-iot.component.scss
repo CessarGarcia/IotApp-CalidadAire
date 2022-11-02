@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300;400;500;600&display=swap');
+
 ion-title{
     font-size: 30px;
     font-weight: bold;
@@ -9,6 +11,26 @@ ion-icon{
     margin-right: 5px;
     font-weight: bolder;
 }
+ion-segment-button > ion-label{
+  font-size: 25px;
+  font-weight: bold;
+}
+strong{
+  font-family: 'Crimson Text', serif;
+}
+ion-label > p{
+  font-family: 'Oswald', Arial, sans-serif !important;
+  font-size: 15px;
+  // font-weight: bold;
+  color: rgb(45, 45, 45)
+}
+div > h1{
+  font-size: 25px;
+  font-weight: bold;
+  color: #000 !important;
+  font-family: 'Crimson Text', serif !important;
+}
+
 
 //Efectos para h1
     .waviy {
@@ -138,5 +160,9 @@ p {
   h1 {
     font-size:24px;
   }
+  ion-segment-button > ion-label{
+    font-size: 18px;
+  }
 }
+
 
