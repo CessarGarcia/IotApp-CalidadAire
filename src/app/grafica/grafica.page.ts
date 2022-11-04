@@ -1,42 +1,44 @@
 import { Component, OnInit,ViewChild,ElementRef,Input } from '@angular/core';
 import * as HighCharts from 'highcharts';
 import { ModalController } from '@ionic/angular';
+import { AngularFireDatabase } from '@angular/fire/database';
 @Component({
   selector: 'app-grafica',
   templateUrl: './grafica.page.html',
   styleUrls: ['./grafica.page.scss'],
 })
-export class GraficaPage implements OnInit {
-  @Input() data; 
-  constructor(private modalCtrl : ModalController) { }
+export class GraficaPage implements OnInit { 
+  constructor(private modalCtrl : ModalController,public database: AngularFireDatabase) {
+    this.leerSensores();
+
+   }
+  sensores : Sensores[]=[]
+  lastSensores: Sensores = {
+    sensor: null
+  };
 
   ngOnInit() {
   }
   ionViewDidEnter() {
-    this.lineChart(this.data);
   }
   @ViewChild("container", { read: ElementRef }) container: ElementRef;
   valoresSensor:any;
+  leerSensores() {
+    const path = 'sensores/';
+    this.database.list<Sensores>(path, ref => ref.orderByChild('time').limitToLast(60)).valueChanges().subscribe( res => {
+        console.log('sensores -> ', res);
+        this.sensores = res;
+        this.sensores.reverse();
+        this.convertirArray(this.sensores);
+        this.lastSensores = this.sensores[0];
+    })
+}
   lineChart(data){
-    
-    console.log("GYM ",data);
+
     this.valoresSensor=HighCharts.chart(this.container.nativeElement, {
       chart: {
-        type: 'spline',
-        marginRight: 10,
-        events: {
-          load: function () {
-
-              // set up the updating of the chart each second
-              var series = this.series[0];
-              setInterval(function () {
-                
-                  var x = (new Date()).getTime(),
-                  y = Math.random()*20+10;
-                  series.addPoint([x, y], true, true);
-              }, 1000);
-          }
-      }
+        type: 'column',
+        marginRight: 10
       },
 
       time: {
@@ -108,5 +110,18 @@ export class GraficaPage implements OnInit {
   closeModal() {
     this.modalCtrl.dismiss();
   }
+  convertirArray(data){
+    let array = [];
+    let i;
+    for(i=0;i<60;i++){
+      array.push(data[i].sensor);
+    }
+    console.log(array);
+    this.lineChart(array);
+  }
+  
+}
 
+interface Sensores {
+  sensor: number;
 }

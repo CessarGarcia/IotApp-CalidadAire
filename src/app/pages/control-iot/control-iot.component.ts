@@ -12,23 +12,20 @@ export class ControlIotComponent implements OnInit {
 
   seccion: 'temp' | 'contr' | 'hist' = 'temp';
   mediciones: Mediciones[] = [];
-  sensores : Sensores[]=[]
+
   lastMedicion: Mediciones = {
     sensor: null,
     time: null,
   };
-  lastSensores: Sensores = {
-    sensor: null
-  };
+
 
   version = 0;
-  datos=[]
+
   manual: boolean = false;
 
   constructor(public database: AngularFireDatabase,public modalCtrl:ModalController,private alertController: AlertController) {
           this.leerMediciones();
           this.clearVersion();
-          this.leerSensores();
   }
 
   ngOnInit() {}
@@ -54,16 +51,6 @@ export class ControlIotComponent implements OnInit {
     });
     await alert.present();
   }
-  leerSensores() {
-    const path = 'sensores/';
-    this.database.list<Sensores>(path, ref => ref.orderByChild('time').limitToLast(60)).valueChanges().subscribe( res => {
-        console.log('sensores -> ', res);
-        this.sensores = res;
-        this.sensores.reverse();
-        this.convertirArray(this.sensores);
-        this.lastSensores = this.sensores[0];
-    })
-}
 
   segmentChanged(ev: any) {
     this.seccion = ev.detail.value;
@@ -76,30 +63,17 @@ export class ControlIotComponent implements OnInit {
   }
 
   async verGrafica() {
-    console.log("Holaa ",this.sensores);
     const modal = await this.modalCtrl.create({
       component: GraficaPage,
       componentProps: {
-        'data':this.datos
       }
     });
     return await modal.present();
   }
-  convertirArray(data){
-    let array = [];
-    let i;
-    for(i=0;i<60;i++){
-      array.push(data[i].sensor);
-    }
-    console.log(array);
-    this.datos=array
-  }
+
 }
 
 interface Mediciones {
   sensor: number;
   time: number;
-}
-interface Sensores {
-  sensor: number;
 }
