@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-
+import { ModalController } from '@ionic/angular';
+import { GraficaPage } from 'src/app/grafica/grafica.page';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-control-iot',
   templateUrl: './control-iot.component.html',
@@ -10,24 +12,28 @@ export class ControlIotComponent implements OnInit {
 
   seccion: 'temp' | 'contr' | 'hist' = 'temp';
   mediciones: Mediciones[] = [];
-
+  sensores : Sensores[]=[]
   lastMedicion: Mediciones = {
     sensor: null,
     time: null,
+  };
+  lastSensores: Sensores = {
+    sensor: null
   };
 
   umbral: number = 25;
   ventilador_state: boolean = null; 
   ventilador: number = 0;
   version = 0;
-
+  datos=[]
   manual: boolean = false;
 
-  constructor(public database: AngularFireDatabase) {
+  constructor(public database: AngularFireDatabase,public modalCtrl:ModalController,private alertController: AlertController) {
           this.leerMediciones();
           this.clearVersion();
           this.leerStateVentilador();
           this.setManual();
+          this.leerSensores();
   }
 
   ngOnInit() {}
@@ -39,8 +45,29 @@ export class ControlIotComponent implements OnInit {
           this.mediciones = res;
           this.mediciones.reverse();
           this.lastMedicion = this.mediciones[0];
+          if(this.mediciones[0].sensor>=400){
+
+          }
       })
   }
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      subHeader: 'Important message',
+      message: 'This is an alert!',
+      buttons: ['OK'],
+    });
+  }
+  leerSensores() {
+    const path = 'sensores/';
+    this.database.list<Sensores>(path, ref => ref.orderByChild('time').limitToLast(60)).valueChanges().subscribe( res => {
+        console.log('sensores -> ', res);
+        this.sensores = res;
+        this.sensores.reverse();
+        this.convertirArray(this.sensores);
+        this.lastSensores = this.sensores[0];
+    })
+}
 
   leerStateVentilador() {
     const path = 'ventilador_state';
@@ -104,9 +131,32 @@ export class ControlIotComponent implements OnInit {
           }
     });
   }
+  async verGrafica() {
+    console.log("Holaa ",this.sensores);
+    const modal = await this.modalCtrl.create({
+      component: GraficaPage,
+      componentProps: {
+        'data':this.datos
+      }
+    });
+    return await modal.present();
+  }
+  convertirArray(data){
+    let array = [];
+    let i;
+    for(i=0;i<60;i++){
+      array.push(data[i].sensor);
+    }
+    console.log(array);
+    this.datos=array
+  }
+  
 }
 
 interface Mediciones {
   sensor: number;
   time: number;
+}
+interface Sensores {
+  sensor: number;
 }

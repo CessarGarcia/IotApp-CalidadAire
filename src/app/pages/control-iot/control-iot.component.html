@@ -163,8 +163,19 @@
                   </ion-label>
                 </ion-item>
               </ion-list>
+             
             </ion-card>
-
+            <ion-card  *ngIf="seccion == 'contr'">
+              <ion-card>
+                <ion-card-header>
+                  <ion-card-title (click)="verGrafica()">Ver Grafica</ion-card-title>
+                  
+                </ion-card-header>
+              
+              </ion-card>
+            
+              
+            </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
