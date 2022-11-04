@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { ModalController } from '@ionic/angular';
 import { GraficaPage } from 'src/app/grafica/grafica.page';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-control-iot',
   templateUrl: './control-iot.component.html',
@@ -27,7 +28,7 @@ export class ControlIotComponent implements OnInit {
   datos=[]
   manual: boolean = false;
 
-  constructor(public database: AngularFireDatabase,public modalCtrl:ModalController) {
+  constructor(public database: AngularFireDatabase,public modalCtrl:ModalController,private alertController: AlertController) {
           this.leerMediciones();
           this.clearVersion();
           this.leerStateVentilador();
@@ -44,7 +45,18 @@ export class ControlIotComponent implements OnInit {
           this.mediciones = res;
           this.mediciones.reverse();
           this.lastMedicion = this.mediciones[0];
+          if(this.mediciones[0].sensor>=400){
+
+          }
       })
+  }
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      subHeader: 'Important message',
+      message: 'This is an alert!',
+      buttons: ['OK'],
+    });
   }
   leerSensores() {
     const path = 'sensores/';

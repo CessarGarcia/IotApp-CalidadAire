@@ -165,8 +165,15 @@
               </ion-list>
              
             </ion-card>
-            <ion-card  *ngIf="seccion == 'hist'">
-              <button ion-button (click)="verGrafica()">Grafica</button>
+            <ion-card  *ngIf="seccion == 'contr'">
+              <ion-card>
+                <ion-card-header>
+                  <ion-card-title (click)="verGrafica()">Ver Grafica</ion-card-title>
+                  
+                </ion-card-header>
+              
+              </ion-card>
+            
               
             </ion-card>
       </ion-col>

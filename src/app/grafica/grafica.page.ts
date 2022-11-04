@@ -1,6 +1,6 @@
 import { Component, OnInit,ViewChild,ElementRef,Input } from '@angular/core';
 import * as HighCharts from 'highcharts';
-
+import { ModalController } from '@ionic/angular';
 @Component({
   selector: 'app-grafica',
   templateUrl: './grafica.page.html',
@@ -8,7 +8,7 @@ import * as HighCharts from 'highcharts';
 })
 export class GraficaPage implements OnInit {
   @Input() data; 
-  constructor() { }
+  constructor(private modalCtrl : ModalController) { }
 
   ngOnInit() {
   }
@@ -104,5 +104,8 @@ export class GraficaPage implements OnInit {
       }())
       }]
     });
+  }
+  closeModal() {
+    this.modalCtrl.dismiss();
   }
 }
