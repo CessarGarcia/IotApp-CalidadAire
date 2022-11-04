@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/IotApp-CalidadAire",
+    "public": "www",
     "ignore": [
       "firebase.json",
       "**/.*",
