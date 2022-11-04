@@ -163,8 +163,12 @@
                   </ion-label>
                 </ion-item>
               </ion-list>
+             
             </ion-card>
-
+            <ion-card  *ngIf="seccion == 'hist'">
+              <button ion-button (click)="verGrafica()">Grafica</button>
+              
+            </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
