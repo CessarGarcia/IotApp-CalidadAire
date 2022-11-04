@@ -108,4 +108,5 @@ export class GraficaPage implements OnInit {
   closeModal() {
     this.modalCtrl.dismiss();
   }
+
 }

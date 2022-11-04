@@ -15,6 +15,15 @@ ion-segment-button > ion-label{
   font-size: 25px;
   font-weight: bold;
 }
+ion-card-header {
+  background-color: rgb(3, 239, 160);
+}
+
+ion-card-header > ion-card-title{
+  cursor: pointer;
+  color: #fff;
+}
+
 strong{
   font-family: 'Crimson Text', serif;
 }
@@ -150,6 +159,9 @@ p {
 }
 /*Shrinking for mobile*/
 @media (max-width: 768px) {
+  .waviy > span, ion-icon{
+    font-size: 20px;
+  }
   .waves {
     height:40px;
     min-height:40px;
@@ -164,5 +176,3 @@ p {
     font-size: 18px;
   }
 }
-
-
