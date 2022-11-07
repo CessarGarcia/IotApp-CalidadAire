@@ -19,7 +19,7 @@ export class ControlIotComponent implements OnInit {
   };
 
 
-  version = 0;
+  alerta = 0;
 
   manual: boolean = false;
 
@@ -38,7 +38,11 @@ export class ControlIotComponent implements OnInit {
           this.mediciones.reverse();
           this.lastMedicion = this.mediciones[0];
           if(this.mediciones[0].sensor>=400){
-            this.presentAlert();
+            if(this.alerta%5==0 && this.alerta>=5){
+              this.presentAlert();
+            }
+            this.alerta++;
+
           }
       })
   }
