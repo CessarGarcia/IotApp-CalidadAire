@@ -117,7 +117,7 @@ export class GraficaPage implements OnInit {
       array.push(data[i].sensor);
     }
     console.log(array);
-    this.lineChart(array);
+    this.lineChart(array.reverse());
   }
   
 }
